@@ -1,5 +1,6 @@
 console.log("I'm working!");
 
+let historyScreen = document.getElementById("history-screen");
 let opsScreen = document.getElementById("ops-screen");
 let btn1 = document.getElementById("1");
 let btn2 = document.getElementById("2");
@@ -21,228 +22,411 @@ let btnPercent = document.getElementById("%");
 let btnAC = document.getElementById("AC");
 let btnBack = document.getElementById("B");
 
+let y;
 let x = "";
-let y = "";
-const array = [];
+let operations = [];
 let countM = 0;
 let countD = 0;
 let equalsSwitch = false;
+let erasedOperation = false
 
 btnAC.addEventListener("click", (event)=>{
     event.preventDefault();
     x = "";
+    y = "";
     countD = 0;
     countM = 0;
-    clearArray(array);
-    console.log(array);
-    opsScreen.value = array[0];
+    clearArray(operations);
+    console.log(operations);
+    opsScreen.value = "";
+    historyScreen.value = "";
+})//btnAC
+
+btnBack.addEventListener("click", event=>{
+    event.preventDefault();
+    console.log("Back button clicked!");
+    if(operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/"){
+        if(operations.at(-1)==="*"){
+            countM--;
+        } else if (operations.at(-1)==="/"){
+            countD--;
+        }//elif
+        operations.pop()
+    } else {
+        if(operations.at(-1).toString().length == 1){
+            operations.pop();
+        } else{
+            let toChange= operations.at(-1).toString();
+            operations.splice(operations.lastIndexOf(operations.at(-1)),1,parseFloat(toChange.substring(0, toChange.length-1)));
+        }
+    }
+    opsScreen.value = operations.join("");
 })
 
 btn0.addEventListener("click", (event)=>{
+    event.preventDefault();
     if (equalsSwitch) {
+        y = opsScreen.value; 
         opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
         equalsSwitch = false;
     }
-    event.preventDefault();
-    opsScreen.value += btn0.innerText;
-    x += btn0.innerText;
+    if (operations.length == 0){
+        operations.push(parseFloat(btn0.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn0.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn0.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn0
+
 btn1.addEventListener("click", (event)=>{
-
     event.preventDefault();
-    opsScreen.value += btn1.innerText;
-    x += btn1.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn1.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn1.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn1.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn1
+
 btn2.addEventListener("click", (event)=>{
-
     event.preventDefault();
-    opsScreen.value += btn2.innerText;
-    x += btn2.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn2.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn2.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn2.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn2
+
 btn3.addEventListener("click", (event)=>{
-
     event.preventDefault();
-    opsScreen.value += btn3.innerText;
-    x += btn3.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn3.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn3.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn3.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn3
+
 btn4.addEventListener("click", (event)=>{
-
     event.preventDefault();
-    opsScreen.value += btn4.innerText;
-    x += btn4.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn4.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn4.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn4.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn4
+
 btn5.addEventListener("click", (event)=>{
-
     event.preventDefault();
-    opsScreen.value += btn5.innerText;
-    x += btn5.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn5.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn5.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn5.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn5
+
 btn6.addEventListener("click", (event)=>{
-
     event.preventDefault();
-    opsScreen.value += btn6.innerText;
-    x += btn6.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn6.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn6.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn6.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn6
+
 btn7.addEventListener("click", (event)=>{
-
     event.preventDefault();
-    opsScreen.value += btn7.innerText;
-    x += btn7.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn7.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn7.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn7.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn7
+
 btn8.addEventListener("click", (event)=>{
-
     event.preventDefault();
-    opsScreen.value += btn8.innerText;
-    x += btn8.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn8.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn8.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn8.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn8
-btn9.addEventListener("click", (event)=>{
 
+btn9.addEventListener("click", (event)=>{
     event.preventDefault();
-    opsScreen.value += btn9.innerText;
-    x += btn9.innerText;
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        clearArray(operations);
+        equalsSwitch = false;
+    }
+    if (operations.length == 0){
+        operations.push(parseFloat(btn9.innerText));
+    } else if (operations.at(-1) == "+" || operations.at(-1) == "-" || operations.at(-1) == "*" || operations.at(-1) == "/") {
+        operations.push(parseFloat(btn9.innerText));
+    } else{
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, parseFloat(operations.at(-1).toString().concat(btn9.innerText)));
+    }
+    opsScreen.value = operations.join("");
 })//btn9
+
+btnDot.addEventListener("click", (event)=>{
+    event.preventDefault();
+    if (equalsSwitch) {
+        y = opsScreen.value; 
+        opsScreen.value = "";
+        historyScreen.value = y;
+        equalsSwitch = false;
+    }
+    if (operations.length > 0 && (operations.at(-1)!= "+" || operations.at(-1) != "-" || operations.at(-1) != "*" || operations.at(-1) != "/")) {
+        operations.splice(operations.lastIndexOf(operations.at(-1)), 1, operations.at(-1).toString().concat("."));
+    }
+    opsScreen.value = operations.join("");
+})//btnDot
+
 btnSum.addEventListener("click", (event)=>{
-    if (equalsSwitch) {
-        opsScreen.value = y;
-        equalsSwitch = false
-        x = y;
-    }
     event.preventDefault();
-    x = parseFloat(x);
-    array.push(x);
-    array.push("+");
-    opsScreen.value += btnSum.innerText;
-    x = "";
+    if (equalsSwitch) {
+        x = opsScreen.value;
+        equalsSwitch = false;
+    }
+    if (operations.length > 0 && (operations.at(-1)!= "+" || operations.at(-1) != "-" || operations.at(-1) != "*" || operations.at(-1) != "/")) {
+        operations.push("+");
+    }
+    opsScreen.value = operations.join("");
 })//btnSum
+
 btnMultiply.addEventListener("click", (event)=>{
-    if (equalsSwitch) {
-        opsScreen.value = y;
-        equalsSwitch = false
-        x = y;
-    }
     event.preventDefault();
-    x = parseFloat(x);
-    array.push(x);
-    array.push("*");
+    if (equalsSwitch) {
+        x = opsScreen.value;
+        equalsSwitch = false;
+    }
+    if (operations.length > 0 && (operations.at(-1)!= "+" || operations.at(-1) != "-" || operations.at(-1) != "*" || operations.at(-1) != "/")) {
+        operations.push("*");
+    }
     countM++;
-    opsScreen.value += btnMultiply.innerText;
-    x = "";
+    opsScreen.value = operations.join("");
 })//btnMultiply
+
 btnSub.addEventListener("click", (event)=>{
-    if (equalsSwitch) {
-        opsScreen.value = y;
-        equalsSwitch = false
-        x = y;
-    }
     event.preventDefault();
-    x = parseFloat(x);
-    array.push(x);
-    array.push("-");
-    opsScreen.value += btnSub.innerText;
-    x = "";
+    if (equalsSwitch) {
+        x = opsScreen.value;
+        equalsSwitch = false;
+    }
+    if (operations.length > 0 && (operations.at(-1)!= "+" || operations.at(-1) != "-" || operations.at(-1) != "*" || operations.at(-1) != "/")) {
+        operations.push("-");
+    }
+    opsScreen.value = operations.join("");
 })//btnSub
+
 btnDivide.addEventListener("click", (event)=>{
-    if (equalsSwitch) {
-        opsScreen.value = y;
-        equalsSwitch = false
-        x = y;
-    }
     event.preventDefault();
-    x = parseFloat(x);
-    array.push(x);
-    array.push("/");
+    if (equalsSwitch) {
+        x = opsScreen.value;
+        equalsSwitch = false;
+    }
+    if (operations.length > 0 && (operations.at(-1)!= "+" || operations.at(-1) != "-" || operations.at(-1) != "*" || operations.at(-1) != "/")) {
+        operations.push("/");
+    }
     countD++;
-    opsScreen.value += btnDivide.innerText;
-    x = "";
+    opsScreen.value = operations.join("");
 })//btnDivide
+
 btnPercent.addEventListener("click", (event)=>{
     event.preventDefault;
     if (equalsSwitch) {
-        opsScreen.value = y;
-        equalsSwitch = false
-        x = y;
+        x = opsScreen.value;
+        equalsSwitch = false;
     }
-    x = parseFloat(x);
-    x = percent(x);
-    opsScreen.value += btnPercent.innerText;
+    operations.splice(operations.indexOf(operations.at(-1)), 1, percent(parseFloat(operations.at(-1))));
+    opsScreen.value = operations.join("");
     
 });//btnPercent
+
 btnEquals.addEventListener("click", (event)=>{
     event.preventDefault();
-    x = parseFloat(x);
-    array.push(x);
-    let i = 0;
-    let prevent = 0;
-    console.log("array: ",array);
+    for (let i = 0; i < operations.length; i++) {
+       if( operations[i] != "+" && operations[i] != "-" && operations[i] != "*" && operations[i] != "/"){
+        operations[i] = parseFloat(operations[i]);
+       } else{
+        continue;
+       }
+    }
+    if (operations.at(-1)==="+"||operations.at(-1)==="-"||operations.at(-1)==="*"||operations.at(-1)==="/") {
+        if(operations.at(-1)==="*"){
+            countM--;
+        } else if (operations.at(-1)==="/"){
+            countD--;
+        }//elif
+
+        operations.pop();
+    }
+    let newArray = [...operations];
+    console.log("newArray is: ",newArray);
     console.log("countM: ",countM);
     console.log("countD: ",countD);
 
+    let counter = 0;
     while (countM > 0 || countD > 0) {
-
-        if (prevent < 100) {
-            if (array[i] === "*") {
-                let result = multiply(array[i - 1], array[i + 1]);
-                array.splice(array.indexOf(array[i - 1]), 3, result);
-                countM--;
-                console.log("countM: ",countM);
-                console.log("array: ",array);
-                i = 0;
-                console.log("succes");
-            }//if
-            else if(array[i] === "/"){
-                let result  = divide(array[i - 1], array[i + 1]);
-                array.splice(array.indexOf(array[i - 1]), 3, result);
-                countD--;
-                console.log("countD: ",countD);
-                console.log("array: ",array);
-                i = 0;
-                console.log("succes");
-            }//elif
-        } else{
-            break;
+        if(newArray[counter] == "*"){
+            let result = multiply(newArray[counter-1], newArray[counter+1]);
+            newArray.splice(counter-1, 3, result);
+            countM--;
+            counter = 0;
+            continue;
+        }else if(newArray[counter] == "/"){
+            let result = divide(newArray[counter-1], newArray[counter+1]);
+            newArray.splice(counter-1, 3, result);
+            countD--;
+            counter = 0;
+            continue;
+        }else{
+            counter++;
         }
-        i++;
-        prevent++
-        console.log("array: ",array);
-    console.log("countM: ",countM);
-    console.log("countD: ",countD);
+
+    //     if (prevent < 100) {
+    //         if (operations[i] === "*") {
+    //             let result = multiply(operations[i - 1], operations[i + 1]);
+    //             operations.splice(operations.indexOf(operations[i - 1]), 3, result);
+    //             countM--;
+    //             console.log("countM: ",countM);
+    //             console.log("operations: ",operations);
+    //             i = 0;
+    //             console.log("succes");
+    //         }//if
+    //         else if(operations[i] === "/"){
+    //             let result  = divide(operations[i - 1], operations[i + 1]);
+    //             operations.splice(operations.indexOf(operations[i - 1]), 3, result);
+    //             countD--;
+    //             console.log("countD: ",countD);
+    //             console.log("operations: ",operations);
+    //             i = 0;
+    //             console.log("succes");
+    //         }//elif
+    //     } else{
+    //         break;
+    //     }
+    //     i++;
+    //     prevent++
+    //     console.log("operations: ",operations);
+    // console.log("countM: ",countM);
+    // console.log("countD: ",countD);
 
     }//while multiply and divide
-    prevent = 0;
-    i = 0;
+    console.log("newArray up to this point is: ", newArray);
+    
+    let i = 0;
+    while (newArray.length > 1) {
 
-    while (array.length > 1) {
-
-        if (prevent > 100) {
-            break;
-        }
-
-        if (array[i] === "+") {
-            let result = sum(array[i - 1], array[i + 1]);
-            array.splice(array.indexOf(array[i - 1]), 3, result);
+        if (newArray[i] == "+") {
+            let result = sum(newArray[i - 1], newArray[i + 1]);
+            newArray.splice(i - 1, 3, result);
             i = 0;
             continue;
         }//if
-        else if(array[i] === "-"){
-            let result  = subtract(array[i - 1], array[i + 1]);
-            array.splice(array.indexOf(array[i - 1]), 3, result);
+        else if(newArray[i] == "-"){
+            let result  = subtract(newArray[i - 1], newArray[i + 1]);
+            newArray.splice(i - 1, 3, result);
             i = 0;
             continue;
         }//elif
 
         i++;
-        prevent++;
         console.log("Looping");
  
     }//while add and subtract
-    
-    prevent = 0;
-    opsScreen.value = array[0];
-    y = array[0];
-    x = "";
+    console.log(newArray);
+    opsScreen.value = newArray[0];
+    y = operations;
+    historyScreen.value = y.join("");
     countM = 0;
     countD = 0;
-    clearArray(array);
+    operations = [...newArray];
     equalsSwitch = true;
     
 });//btnEquals
@@ -262,9 +446,9 @@ function divide(a,b){
 function percent(a){
     return a/100;
 }
-function clearArray(array) {
-    let numOfCicles = array.length;
+function clearArray(arr) {
+    let numOfCicles = arr.length;
     for (let i = 0; i < numOfCicles; i++) {
-        array.pop()
+        arr.pop()
     }
 }

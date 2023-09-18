@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
     <div id="calculator">
         <div id="calc-screen">
-            <input type="text" readonly="true" value="-">
+            <input id="history-screen" type="text" readonly="true" value="-">
             <input id="ops-screen" type="text" readonly="true"  value="">
         </div>
         <div id="calc-body">
             <button id="AC">AC</button>
-            <button id="B">B</button>
+            <button id="B"><i class="bi bi-backspace"></i></button>
             <button id="%">%</button>
             <button id="/">/</button>
             <button id="7">7</button>
@@ -29,7 +30,7 @@
             <button id="2">2</button>
             <button id="3">3</button>
             <button id="+">+</button>
-            <button id="shift">shift</button>
+            <button id="shift"><i class="bi bi-arrow-left-right"></i></button>
             <button id="0">0</button>
             <button id=".">.</button>
             <button id="=">=</button>
