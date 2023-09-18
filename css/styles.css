@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import url("https://fonts.googleapis.com/css?family=Mooli");
 
 :root{
-    --color-yellow: rgb(255, 242, 161);
-    --color-yellow2: rgb(255, 225, 125);
-    --color-yellow1: yellow;
-    --color-yellow3:rgb(192, 192, 0);
+    --color-calculator: rgb(239, 161, 239);
+    --color-borders: rgb(179, 97, 179);
+    --color-hover: rgb(219, 64, 219);
+    --color-equals:violet;
     --color-screenbackground: whitesmoke;
 }
 html{
@@ -12,26 +12,30 @@ html{
 }
 *{
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Mooli", sans-serif;
 }
 body{
     background-color: black;
     margin: 0;
     padding: 0;
 }
+h1{
+    text-align: center;
+    color: whitesmoke;
+}
 #calculator{
     width: 90%;
     max-width: 350px;
     margin: 5vh auto;
-    background-color: var(--color-yellow);
+    background-color: var(--color-calculator);
     padding: 1px;
     border-radius: 1%;
-    box-shadow: 2.5px 2.5px 10px 1px var(--color-yellow2);
+    box-shadow: 2.5px 2.5px 10px 1px var(--color-borders);
 }
 #calc-screen{
     margin: 5vh auto;
     width: 90%;
-    border: 2px solid var(--color-yellow2);
+    border: 2px solid var(--color-borders);
     border-radius: 1%;
     overflow: hidden;
 }
@@ -66,13 +70,13 @@ button{
     width: 100%;
     height: 6vh;
     /* border-radius: 10px; */
-    background-color: var(--color-yellow);
-    border-color: var(--color-yellow2);
-    font-size: 1.2rem;
+    background-color: var(--color-calculator);
+    border-color: var(--color-borders);
+    font-size: 1.5rem;
 }
 button:last-child{
-    background-color: var(--color-yellow2);
+    background-color: var(--color-equals);
 }
 button:hover{
-    background-color: var(--color-yellow1);
+    background-color: var(--color-hover);
 }

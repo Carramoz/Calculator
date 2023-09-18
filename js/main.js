@@ -21,6 +21,8 @@ let btnDivide = document.getElementById("/");
 let btnPercent = document.getElementById("%");
 let btnAC = document.getElementById("AC");
 let btnBack = document.getElementById("B");
+let btnShift = document.getElementById("shift")
+let root = document.querySelector(":root")
 
 let y;
 let x = "";
@@ -29,6 +31,69 @@ let countM = 0;
 let countD = 0;
 let equalsSwitch = false;
 let erasedOperation = false
+
+const yellow = {
+    calculator: "rgb(255, 242, 161)",
+    borders: "rgb(255, 225, 125)",
+    hover: "yellow",
+    equals: "rgb(192, 192, 0)"
+}
+const blue = {
+    calculator: "rgb(194, 246, 255)",
+    borders: "rgb(134, 219, 234)",
+    hover: "rgb(0, 247, 255)",
+    equals: "rgb(0, 195, 255)"
+}
+
+const pink = {
+    calculator: "pink",
+    borders: "rgb(252, 168, 182)",
+    hover: "rgb(255, 123, 145)",
+    equals: "rgb(231, 164, 175)"
+}
+
+const orange = {
+    calculator: "rgb(255, 215, 139)",
+    borders: "rgb(255, 203, 106)",
+    hover: "orange",
+    equals: "rgb(221, 186, 120)",
+}
+
+const green = {
+    calculator: "rgb(149, 209, 149)",
+    borders: "rgb(121, 168, 121)",
+    hover: "green",
+    equals: "rgb(119, 192, 119)"
+}
+
+const violet = {
+    calculator: "rgb(239, 161, 239)", 
+    borders: "rgb(179, 97, 179)",
+    hover: "rgb(219, 64, 219)",
+    equals: "violet"
+}
+
+let colors = [yellow, blue, pink, orange, green, violet];
+
+function setColor(color) {
+    root.style.setProperty("--color-calculator",color.calculator);
+    root.style.setProperty("--color-borders",color.borders);
+    root.style.setProperty("--color-hover",color.hover);
+    root.style.setProperty("--color-equals",color.equals);
+    return color;
+}
+
+let currentColor = setColor(yellow);
+let colorCounter = colors.indexOf(currentColor)
+btnShift.addEventListener("click", event =>{
+    event.preventDefault();
+    if (colorCounter == 5) {
+        colorCounter = 0;
+    } else{
+        colorCounter++
+    }
+    setColor(colors.at(colorCounter));
+})
 
 btnAC.addEventListener("click", (event)=>{
     event.preventDefault();
